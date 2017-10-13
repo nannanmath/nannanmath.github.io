@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Nan">
 <meta property="og:description" content="Full destributed module.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-12T06:43:26.580Z">
+<meta property="og:updated_time" content="2017-10-13T08:27:29.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop-3">
 <meta name="twitter:description" content="Full destributed module.">
@@ -484,7 +484,11 @@ DataNode: s202, s203, s204
 </ol>
 <h1 id="Config-by-script"><a href="#Config-by-script" class="headerlink" title="Config by script"></a>Config by script</h1><ol>
 <li>Install <code>rsync</code> package</li>
-<li>Edit <code>xcall.sh</code> copy file to other nodes <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 1 ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> no param;</div><div class="line">    <span class="built_in">exit</span>;</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">path=<span class="variable">$1</span></div><div class="line"></div><div class="line">dir=$(dirname <span class="variable">$path</span>)</div><div class="line">filename=$(basename <span class="variable">$path</span>)</div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$dir</span></div><div class="line">fullpath=$(<span class="built_in">pwd</span> -P .)</div><div class="line">user=$(whoami)</div><div class="line"><span class="keyword">for</span> (( ip=202; ip&lt;=204; ip=<span class="variable">$ip</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> ============node: s<span class="variable">$ip</span>=============</div><div class="line">    rsync -lr <span class="variable">$&#123;path&#125;</span> <span class="variable">$&#123;user&#125;</span>@s<span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;fullpath&#125;</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></li>
+<li><p>Edit <code>xcall.sh</code> to run command on all nodes</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">param=<span class="variable">$@</span></div><div class="line">ip=201</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 1 ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> parameters less than 1</div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (( ; ip&lt;=204; ip=<span class="variable">$ip</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> =============host: <span class="variable">$&#123;ip&#125;</span>============</div><div class="line">    ssh s<span class="variable">$ip</span> <span class="string">"<span class="variable">$&#123;param&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Edit <code>xrsync.sh</code> copy file to other nodes</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 1 ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> no param</div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">path=<span class="variable">$1</span></div><div class="line"></div><div class="line">dir=$(dirname <span class="variable">$path</span>)</div><div class="line">filename=$(basename <span class="variable">$path</span>)</div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$dir</span></div><div class="line">fullpath=$(<span class="built_in">pwd</span> -P .)</div><div class="line">user=$(whoami)</div><div class="line"><span class="keyword">for</span> (( ip=202; ip&lt;=204; ip=<span class="variable">$ip</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> ============node: s<span class="variable">$ip</span>=============</div><div class="line">    rsync -lr <span class="variable">$&#123;path&#125;</span> <span class="variable">$&#123;user&#125;</span>@s<span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;fullpath&#125;</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -612,7 +616,7 @@ DataNode: s202, s203, s204
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -634,7 +638,7 @@ DataNode: s202, s203, s204
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

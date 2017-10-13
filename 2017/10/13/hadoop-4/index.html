@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="c++," />
+  <meta name="keywords" content="hadoop," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="This post will introduce a C++ 11 feature, std::function. It can wrap any kind of callable element into a copyable object and whose type depands soly on its call signature.">
-<meta name="keywords" content="c++">
+<meta name="description" content="Hadoop start procedure.">
+<meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="function wrap">
-<meta property="og:url" content="https://nannanmath.github.io/2017/06/22/function-wrap/index.html">
+<meta property="og:title" content="hadoop-4">
+<meta property="og:url" content="https://nannanmath.github.io/2017/10/13/hadoop-4/index.html">
 <meta property="og:site_name" content="Nan">
-<meta property="og:description" content="This post will introduce a C++ 11 feature, std::function. It can wrap any kind of callable element into a copyable object and whose type depands soly on its call signature.">
+<meta property="og:description" content="Hadoop start procedure.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-09T04:21:06.316Z">
+<meta property="og:updated_time" content="2017-10-13T09:50:59.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="function wrap">
-<meta name="twitter:description" content="This post will introduce a C++ 11 feature, std::function. It can wrap any kind of callable element into a copyable object and whose type depands soly on its call signature.">
+<meta name="twitter:title" content="hadoop-4">
+<meta name="twitter:description" content="Hadoop start procedure.">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://nannanmath.github.io/2017/06/22/function-wrap/"/>
+  <link rel="canonical" href="https://nannanmath.github.io/2017/10/13/hadoop-4/"/>
 
 
 
 
 
-  <title>function wrap | Nan</title>
+  <title>hadoop-4 | Nan</title>
   
 
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/06/22/function-wrap/">
+    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/13/hadoop-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nannanmath">
@@ -360,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">function wrap</h2>
+          <h2 class="post-title" itemprop="name headline">hadoop-4</h2>
         
 
         <div class="post-meta">
@@ -372,8 +372,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-22T14:24:15+08:00">
-                2017-06-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-13T17:27:35+08:00">
+                2017-10-13
               </time>
             
 
@@ -395,8 +395,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index">
-                    <span itemprop="name">Program</span>
+                  <a href="/categories/BigData/" itemprop="url" rel="index">
+                    <span itemprop="name">BigData</span>
                   </a>
                 </span>
 
@@ -413,9 +413,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/22/function-wrap/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/13/hadoop-4/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/22/function-wrap/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/13/hadoop-4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,10 +448,26 @@
       
 
       
-        <p>This post will introduce a C++ 11 feature, <code>std::function</code>. It can wrap any kind of <em>callable element</em> into a copyable object and whose type depands soly on its call signature.  </p>
-<a id="more"></a>
-<p><code>std::function</code> is an object who can replace the function poiner in C language but more safety. It is useful for implement of many C++ design patterns.</p>
-<figure class="highlight c"><figcaption><span>std::function</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::function&lt;<span class="keyword">int</span>(<span class="keyword">int</span>,<span class="keyword">int</span>)&gt; IntOpFun;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Adder</span> &#123;</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">OnAB</span><span class="params">(<span class="keyword">int</span> iA, <span class="keyword">int</span> iB)</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Add(%d,%d)=%d"</span>, iA, iB, iA + iB);</div><div class="line">    <span class="keyword">return</span> iA + iB;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Muler</span> &#123;</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">OnAB</span><span class="params">(<span class="keyword">int</span> iA, <span class="keyword">int</span> iB)</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Mul3(%d,%d)=%d"</span>, iA, iB, iA * iB);</div><div class="line">    <span class="keyword">return</span> iA * iB;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Subject</span> &#123;</span></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">AddObserver</span><span class="params">(IntOpFun of)</span> </span>&#123;</div><div class="line">    m_vecOf.push_back(of);</div><div class="line">  &#125;</div><div class="line"> </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">(<span class="keyword">int</span> iA, <span class="keyword">int</span> iB)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> iter = m_vecOf.begin(); iter != m_vecOf.end(); ++iter) &#123;</div><div class="line">      (*iter)(iA, iB);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;IntOpFun&gt; m_vecOf;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  Subject3 subj;</div><div class="line">  Adder3 adder;</div><div class="line">  Muler3 muler;</div><div class="line">  subj.AddObserver(<span class="built_in">std</span>::bind(&amp;Adder3::OnAB, &amp;adder, <span class="built_in">std</span>::placeholders::_1, <span class="built_in">std</span>::placeholders::_2));</div><div class="line">  subj.AddObserver(<span class="built_in">std</span>::bind(&amp;Muler3::OnAB, &amp;muler, <span class="built_in">std</span>::placeholders::_1, <span class="built_in">std</span>::placeholders::_2));</div><div class="line">  subj.Notify(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>Hadoop start procedure.<br><a id="more"></a></p>
+<h2 id="Processes"><a href="#Processes" class="headerlink" title="Processes"></a>Processes</h2><ol>
+<li><code>start-dfs.sh</code><br> NameNode<br> SecondNameNode<br> DataNode</li>
+<li><code>start-yarn.sh</code><br> ResourceManager<br> NodeManage</li>
+</ol>
+<h2 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h2><ol>
+<li><code>sbin/start-all.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>start-dfs.sh</code><br> <code>start-yarn.sh</code></li>
+</ol>
+<hr>
+<ol>
+<li><p><code>sbin/start-dfs.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start namenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start datanode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start secondarynamenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start zkfc ...</code></p>
+</li>
+<li><p><code>sbin/start-yarn.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/yarn-daemon.sh start resourcemanager</code><br> <code>sbin/yarn-daemon.sh start nodemanager</code></p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><code>sbin/hadoop-deamons.sh</code></li>
+</ol>
+
       
     </div>
     
@@ -468,7 +484,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag"># c++</a>
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
           
         </div>
       
@@ -481,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/21/operator-overloading/" rel="next" title="operator overloading">
-                <i class="fa fa-chevron-left"></i> operator overloading
+              <a href="/2017/10/13/java-reflection/" rel="next" title="java-reflection">
+                <i class="fa fa-chevron-left"></i> java-reflection
               </a>
             
           </div>
@@ -490,10 +506,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/03/vmware-centos/" rel="prev" title="How to install CentOS Linux on VMware 12">
-                How to install CentOS Linux on VMware 12 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,8 +564,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/qinglian.jpg"
@@ -657,6 +678,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Processes"><span class="nav-number">1.</span> <span class="nav-text">Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scripts"><span class="nav-number">2.</span> <span class="nav-text">Scripts</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -826,9 +863,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nannanmath.github.io/2017/06/22/function-wrap/';
-          this.page.identifier = '2017/06/22/function-wrap/';
-          this.page.title = 'function wrap';
+          this.page.url = 'https://nannanmath.github.io/2017/10/13/hadoop-4/';
+          this.page.identifier = '2017/10/13/hadoop-4/';
+          this.page.title = 'hadoop-4';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-nannanmath-github-io.disqus.com/embed.js';
