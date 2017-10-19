@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Nan">
 <meta property="og:description" content="Hadoop start procedure.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-13T09:50:59.199Z">
+<meta property="og:updated_time" content="2017-10-13T10:20:46.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop-4">
 <meta name="twitter:description" content="Hadoop start procedure.">
@@ -455,17 +455,12 @@
 </ol>
 <h2 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h2><ol>
 <li><code>sbin/start-all.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>start-dfs.sh</code><br> <code>start-yarn.sh</code></li>
-</ol>
-<hr>
-<ol>
-<li><p><code>sbin/start-dfs.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start namenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start datanode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start secondarynamenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start zkfc ...</code></p>
+<li><code>sbin/start-dfs.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start namenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start datanode ...</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start secondarynamenode ...</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start zkfc ...</code></li>
+<li><code>sbin/start-yarn.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/yarn-daemon.sh start resourcemanager</code><br> <code>sbin/yarn-daemon.sh start nodemanager</code></li>
+<li><code>sbin/hadoop-deamons.sh</code><br> <code>libexec/hadoop-config.sh</code><br> get slave node from <code>slaves</code> file<br> <code>hadoop-daemon.sh</code></li>
+<li><code>sbin/hadoop-deamon.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>bin/hdfs ...</code></li>
+<li>Start process separately <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$&gt; hadoop-daemon.sh start namenode  // start namenode (run on master node)</div><div class="line">$&gt; hadoop-daemons.sh start datanode // start datanodes on 3 machines (run on master node, `hadoop-daemons.sh` will access slaves file)</div><div class="line">$&gt; hadoop-daemon.sh stop namenode   // stop namenode (run on master node)</div><div class="line">$&gt; hadoop-daemon.sh stop datanode   // stop datanode on that node who runs this <span class="built_in">command</span>.</div></pre></td></tr></table></figure>
 </li>
-<li><p><code>sbin/start-yarn.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/yarn-daemon.sh start resourcemanager</code><br> <code>sbin/yarn-daemon.sh start nodemanager</code></p>
-</li>
-</ol>
-<hr>
-<ol>
-<li><code>sbin/hadoop-deamons.sh</code></li>
 </ol>
 
       
@@ -506,6 +501,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/16/hadoop-5/" rel="prev" title="hadoop-5">
+                hadoop-5 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +588,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
