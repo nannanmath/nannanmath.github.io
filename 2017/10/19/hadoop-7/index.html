@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="Full destributed module.">
+<meta name="description" content="Maven introduction.">
 <meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop-3">
-<meta property="og:url" content="https://nannanmath.github.io/2017/10/09/hadoop-3/index.html">
+<meta property="og:title" content="hadoop-7">
+<meta property="og:url" content="https://nannanmath.github.io/2017/10/19/hadoop-7/index.html">
 <meta property="og:site_name" content="Nan">
-<meta property="og:description" content="Full destributed module.">
+<meta property="og:description" content="Maven introduction.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-13T08:27:29.113Z">
+<meta property="og:updated_time" content="2017-10-19T09:49:12.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hadoop-3">
-<meta name="twitter:description" content="Full destributed module.">
+<meta name="twitter:title" content="hadoop-7">
+<meta name="twitter:description" content="Maven introduction.">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://nannanmath.github.io/2017/10/09/hadoop-3/"/>
+  <link rel="canonical" href="https://nannanmath.github.io/2017/10/19/hadoop-7/"/>
 
 
 
 
 
-  <title>hadoop-3 | Nan</title>
+  <title>hadoop-7 | Nan</title>
   
 
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/09/hadoop-3/">
+    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/19/hadoop-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nannanmath">
@@ -360,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">hadoop-3</h2>
+          <h2 class="post-title" itemprop="name headline">hadoop-7</h2>
         
 
         <div class="post-meta">
@@ -372,8 +372,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-09T17:29:17+08:00">
-                2017-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T15:27:09+08:00">
+                2017-10-19
               </time>
             
 
@@ -413,9 +413,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/09/hadoop-3/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/19/hadoop-7/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/09/hadoop-3/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/19/hadoop-7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,47 +448,32 @@
       
 
       
-        <p>Full destributed module.<br><a id="more"></a></p>
-<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><pre><code>NameNode: s201  
-DataNode: s202, s203, s204
-</code></pre><h2 id="Config-of-Hadoop"><a href="#Config-of-Hadoop" class="headerlink" title="Config of Hadoop"></a>Config of Hadoop</h2><ol>
-<li><p><code>core-site.xml</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">    &lt;value&gt;hdfs://s201/&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>hdfs-site.xml</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">    &lt;value&gt;3&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-<p> There are 3 datanodes.</p>
-</li>
-<li><code>mapred-site.xml</code><br> Don not need to modify.</li>
-<li><p><code>yarn-site.xml</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">    &lt;value&gt;s201&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;property&gt;</div><div class="line">    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure>
-<p> resourcemanager is s201.</p>
-</li>
-<li>Clear<br> Remove all of <code>${HADOOP_HOME}/logs</code> and <code>/tmp</code>.<h2 id="Clone-VMs-and-Test"><a href="#Clone-VMs-and-Test" class="headerlink" title="Clone VMs and Test"></a>Clone VMs and Test</h2></li>
-<li>Clone<br> Clone –&gt; Create a full done</li>
-<li>Config hostname and network<ul>
-<li>hostname<br>  Edit <code>/etc/sysconfig/network</code><br>  Change <code>HOSTNAME=s20x</code></li>
-<li>Network<ul>
-<li>IP<br>  Edit <code>/etc/sysconfig/network-scripts/ifcfg-ehtx</code><br>  Remove <code>HWADDR</code> and <code>UUID</code><br>  Change <code>IPADDR=xxx.xxx.xxx.20x</code></li>
-<li>Card info<br>  Remove <code>/etc/udev/rules.d/70-persistent-net.rules</code>  </li>
-<li>Restart network</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Ssh without password<br> Config <code>s201</code> login others without password.</li>
-<li><p>Start hadoop</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; hadoop namenode -format</div><div class="line">$&gt; start-all.sh</div></pre></td></tr></table></figure>
-<p> WebUI: <code>http://192.168.137.201:50070</code><br> Click Datanodes –&gt; 3 datanodes</p>
-</li>
+        <p>Maven introduction.<br><a id="more"></a></p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ol>
+<li>Download from <a href="http://maven.apache.org/download.cgi" target="_blank" rel="external">Maven</a>.</li>
+<li>Unzip and config <strong><em>path</em></strong>.</li>
 </ol>
-<h1 id="Config-by-script"><a href="#Config-by-script" class="headerlink" title="Config by script"></a>Config by script</h1><ol>
-<li>Install <code>rsync</code> package</li>
-<li><p>Edit <code>xcall.sh</code> to run command on all nodes</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line">param=<span class="variable">$@</span></div><div class="line">ip=201</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 1 ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> parameters less than 1</div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> (( ; ip&lt;=204; ip=<span class="variable">$ip</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> =============host: <span class="variable">$&#123;ip&#125;</span>============</div><div class="line">    ssh s<span class="variable">$ip</span> <span class="string">"<span class="variable">$&#123;param&#125;</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="Maven-configuration"><a href="#Maven-configuration" class="headerlink" title="Maven configuration"></a>Maven configuration</h2><ol>
+<li>Change repository<ul>
+<li>remote repo<br>  <mirror>  <profile></profile></mirror></li>
+<li>Local repo  <localrepository></localrepository></li>
+</ul>
 </li>
-<li><p>Edit <code>xrsync.sh</code> copy file to other nodes</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 1 ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> no param</div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">path=<span class="variable">$1</span></div><div class="line"></div><div class="line">dir=$(dirname <span class="variable">$path</span>)</div><div class="line">filename=$(basename <span class="variable">$path</span>)</div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$dir</span></div><div class="line">fullpath=$(<span class="built_in">pwd</span> -P .)</div><div class="line">user=$(whoami)</div><div class="line"><span class="keyword">for</span> (( ip=202; ip&lt;=204; ip=<span class="variable">$ip</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> ============node: s<span class="variable">$ip</span>=============</div><div class="line">    rsync -lr <span class="variable">$&#123;path&#125;</span> <span class="variable">$&#123;user&#125;</span>@s<span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;fullpath&#125;</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></li>
+<li><p>Project control</p>
+<ul>
+<li><p>Make <strong><em>pom.xml</em></strong> file in root dir of porject.</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"&gt;</div><div class="line">&lt;project&gt;</div><div class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line">    &lt;groupId&gt;nan.learnjava&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;testmaven&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.0.0&lt;/version&gt;</div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Make dirs <strong><em>nan/learnjava/testmaven</em></strong>.</p>
+</li>
+<li><p>Create java source file <strong><em>HelloMaven.java</em></strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> nan.learnjava.testmaven;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloMaven</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Maven!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Compile and run</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; mvn clean compile    // compile</div><div class="line">$&gt; mvn clean package    // package jar</div><div class="line">$&gt; java -cp testmaven-1.0.0.jar nan.learnjava.testmaven.HelloMaven  // run</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
 </ol>
 
       
@@ -520,8 +505,8 @@ DataNode: s202, s203, s204
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/09/hadoop-2/" rel="next" title="hadoop-2">
-                <i class="fa fa-chevron-left"></i> hadoop-2
+              <a href="/2017/10/17/hadoop-6/" rel="next" title="hadoop-6">
+                <i class="fa fa-chevron-left"></i> hadoop-6
               </a>
             
           </div>
@@ -529,10 +514,6 @@ DataNode: s202, s203, s204
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/11/jvm/" rel="prev" title="jvm">
-                jvm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -715,7 +696,7 @@ DataNode: s202, s203, s204
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Design"><span class="nav-number">1.</span> <span class="nav-text">Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-of-Hadoop"><span class="nav-number">2.</span> <span class="nav-text">Config of Hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clone-VMs-and-Test"><span class="nav-number">3.</span> <span class="nav-text">Clone VMs and Test</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Config-by-script"><span class="nav-number"></span> <span class="nav-text">Config by script</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-configuration"><span class="nav-number">2.</span> <span class="nav-text">Maven configuration</span></a></li></ol></div>
             
 
           </div>
@@ -890,9 +871,9 @@ DataNode: s202, s203, s204
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nannanmath.github.io/2017/10/09/hadoop-3/';
-          this.page.identifier = '2017/10/09/hadoop-3/';
-          this.page.title = 'hadoop-3';
+          this.page.url = 'https://nannanmath.github.io/2017/10/19/hadoop-7/';
+          this.page.identifier = '2017/10/19/hadoop-7/';
+          this.page.title = 'hadoop-7';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-nannanmath-github-io.disqus.com/embed.js';

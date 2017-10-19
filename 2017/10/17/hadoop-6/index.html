@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Nan">
 <meta property="og:description" content="Hadoop API.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-19T03:39:25.913Z">
+<meta property="og:updated_time" content="2017-10-19T05:36:20.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop-6">
 <meta name="twitter:description" content="Hadoop API.">
@@ -451,7 +451,7 @@
         <p>Hadoop API.<br><a id="more"></a></p>
 <h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h2><ol>
 <li>Get all <strong><em>.jar</em></strong> files in <code>hadoop-2.7.x/share/hadoop</code></li>
-<li>Add to <strong><em>Build Path</em></strong><br> <strong><em>Build Path</em></strong> –&gt; <strong><em>Configure Build Path…</em></strong> –&gt; <strong><em>Libraries</em></strong><br>–&gt; <strong><em>Add External JARs…</em></strong><br> Add all <strong><em>.jar</em></strong> files.</li>
+<li>Add to <strong><em>Build Path</em></strong><br> <strong><em>Build Path</em></strong> –&gt; <strong><em>Configure Build Path…</em></strong> –&gt; <strong><em>Libraries</em></strong> –&gt; <strong><em>Add External JARs…</em></strong><br> Add all <strong><em>.jar</em></strong> files.</li>
 <li>Copy <strong><em>log4j.properties</em></strong> file to <strong><em>HadoopAPIDemo/src</em></strong> dir.</li>
 </ol>
 <h2 id="Hadoop-API"><a href="#Hadoop-API" class="headerlink" title="Hadoop API"></a>Hadoop API</h2><p>This functions are implemented by <strong><em>Configuration</em></strong> and <strong><em>FileSystem</em></strong> classes. <strong><em>Configuration</em></strong> is for configuring connections to remote HDFS and <strong><em>FileSystem</em></strong> is used to get file system of HDFS. Full Code can be found on <a href="https://github.com/nannanmath/HadoopLearning/blob/master/src/nan/javalearn/hadoopapi/TestHDFS.java" target="_blank" rel="external">github</a>.</p>
@@ -471,10 +471,10 @@
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020"</span>);</div><div class="line">FileSystem fs = FileSystem.get(conf);</div><div class="line">Path p = <span class="keyword">new</span> Path(<span class="string">"/usr/win7admin"</span>);</div><div class="line">fs.mkdirs(p);</div></pre></td></tr></table></figure>
 </li>
 <li><p>Put file</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Configuration conf = new Configuration();</div><div class="line">conf.set(&quot;fs.defaultFS&quot;, &quot;hdfs://192.168.137.201:8020&quot;);</div><div class="line">FileSystem fs = FileSystem.get(conf);</div><div class="line">Path p = new Path(&quot;/usr/win7admin/win7.txt&quot;);</div><div class="line">FSDataOutputStream fsdos = fs.create(p);</div><div class="line">fsdos.writeBytes(&quot;Hello, Windows7!&quot;);</div><div class="line">fsdos.close();</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020"</span>);</div><div class="line">FileSystem fs = FileSystem.get(conf);</div><div class="line">Path p = <span class="keyword">new</span> Path(<span class="string">"/usr/win7admin/win7.txt"</span>);</div><div class="line">FSDataOutputStream fsdos = fs.create(p);</div><div class="line">fsdos.writeBytes(<span class="string">"Hello, Windows7!"</span>);</div><div class="line">fsdos.close();</div></pre></td></tr></table></figure>
 </li>
 <li><p>Remove file</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Configuration conf = new Configuration();</div><div class="line">conf.set(&quot;fs.defaultFS&quot;, &quot;hdfs://192.168.137.201:8020&quot;);</div><div class="line">FileSystem fs = FileSystem.get(conf);</div><div class="line">Path p = new Path(&quot;/usr/win7admin&quot;);</div><div class="line">fs.delete(p, true);</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020"</span>);</div><div class="line">FileSystem fs = FileSystem.get(conf);</div><div class="line">Path p = <span class="keyword">new</span> Path(<span class="string">"/usr/win7admin"</span>);</div><div class="line">fs.delete(p, <span class="keyword">true</span>);</div></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -516,6 +516,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/hadoop-7/" rel="prev" title="hadoop-7">
+                hadoop-7 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -599,7 +603,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
