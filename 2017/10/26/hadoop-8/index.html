@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Environment," />
+  <meta name="keywords" content="hadoop," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="This post will introduce how to install a CentOS on VMware 12.">
-<meta name="keywords" content="Environment">
+<meta name="description" content="Hdfs block size.">
+<meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to install CentOS Linux on VMware 12">
-<meta property="og:url" content="https://nannanmath.github.io/2017/10/03/vmware-centos/index.html">
+<meta property="og:title" content="hadoop-8">
+<meta property="og:url" content="https://nannanmath.github.io/2017/10/26/hadoop-8/index.html">
 <meta property="og:site_name" content="Nan">
-<meta property="og:description" content="This post will introduce how to install a CentOS on VMware 12.">
+<meta property="og:description" content="Hdfs block size.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-12T08:04:27.684Z">
+<meta property="og:updated_time" content="2017-10-26T07:18:50.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to install CentOS Linux on VMware 12">
-<meta name="twitter:description" content="This post will introduce how to install a CentOS on VMware 12.">
+<meta name="twitter:title" content="hadoop-8">
+<meta name="twitter:description" content="Hdfs block size.">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://nannanmath.github.io/2017/10/03/vmware-centos/"/>
+  <link rel="canonical" href="https://nannanmath.github.io/2017/10/26/hadoop-8/"/>
 
 
 
 
 
-  <title>How to install CentOS Linux on VMware 12 | Nan</title>
+  <title>hadoop-8 | Nan</title>
   
 
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/03/vmware-centos/">
+    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/26/hadoop-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nannanmath">
@@ -360,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">How to install CentOS Linux on VMware 12</h2>
+          <h2 class="post-title" itemprop="name headline">hadoop-8</h2>
         
 
         <div class="post-meta">
@@ -372,8 +372,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-03T18:30:30+08:00">
-                2017-10-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-26T10:43:06+08:00">
+                2017-10-26
               </time>
             
 
@@ -413,9 +413,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/03/vmware-centos/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/26/hadoop-8/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/03/vmware-centos/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/26/hadoop-8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,90 +448,20 @@
       
 
       
-        <p>This post will introduce how to install a CentOS on VMware 12.</p>
-<a id="more"></a>
-<h2 id="Install-CentOS"><a href="#Install-CentOS" class="headerlink" title="Install CentOS"></a>Install CentOS</h2><p>Custom –&gt; I will install the operating system later.</p>
-<h2 id="Good-Commands"><a href="#Good-Commands" class="headerlink" title="Good Commands"></a>Good Commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">$&gt; more a.txt        // more display</div><div class="line">$&gt; more -5 a.txt     // display the first 5 lines</div><div class="line"></div><div class="line">$&gt; ls -aR ~          // list all recursively</div><div class="line"></div><div class="line">$&gt; head a.txt        // display the first 10 lines</div><div class="line">$&gt; head -n 12 a.txt  // display the first 12 lines</div><div class="line">$&gt; head -n -10 a.txt  // display all but the last 10 lines</div><div class="line"></div><div class="line">$&gt; tail a.txt        // display the last 10 lines</div><div class="line">$&gt; tail -n 12 a.txt  // the last 12 lines</div><div class="line"></div><div class="line">$&gt; wc -c a.txt       // display the byte counts</div><div class="line">$&gt; wc -m a.txt       // <span class="built_in">print</span> the char counts</div><div class="line">$&gt; wc -l a.txt       // <span class="built_in">print</span> the line counts</div><div class="line">$&gt; wc -w a.txt       // display the word counts</div><div class="line">$&gt; wc -L a.txt       // <span class="built_in">print</span> the length of the longest line</div><div class="line"></div><div class="line">$&gt; hostname</div><div class="line">$&gt; uname -a          // <span class="built_in">print</span> all information about system</div><div class="line"></div><div class="line">$&gt; file a.so         // <span class="built_in">print</span> <span class="built_in">type</span> of a file</div><div class="line"></div><div class="line">$&gt; xargs             // convert multi lines to single line</div><div class="line">$&gt; find . | grep txt | cp `xargs` temp    // copy all <span class="string">'txt'</span> files from `find` <span class="built_in">command</span> to `temp` directory</div><div class="line"></div><div class="line">$&gt; <span class="built_in">which</span> <span class="built_in">echo</span>        // find <span class="built_in">where</span> <span class="built_in">command</span> `<span class="built_in">echo</span>` is</div><div class="line"></div><div class="line">$&gt; chmod g+w a.txt   // add write permission to group</div><div class="line"></div><div class="line">$&gt; chown -h xxx:xxx linker  // change a linker owner but not object</div><div class="line">$&gt; ln -sfT linker newObject  // change a linker from old to new</div></pre></td></tr></table></figure>
-<h2 id="Net-Configuration"><a href="#Net-Configuration" class="headerlink" title="Net Configuration"></a>Net Configuration</h2><ol>
-<li><p>Network modes</p>
-<ul>
-<li>Bridged <ul>
-<li>Connect virtual machine to Internet directly by physical netcard.  </li>
-<li>Other machines can access virtual machine directly.</li>
-</ul>
+        <p>Hdfs block size.<br><a id="more"></a></p>
+<h2 id="Block-size"><a href="#Block-size" class="headerlink" title="Block size"></a>Block size</h2><ol>
+<li><p>Add property<br> Default blocksize is 128m, minimal blocksize is 1m.<br> Edit <strong><em>hdfs-site.xml</em></strong>, add property <code>dfs.blocksize</code>.</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dsf.blocksize<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>2k<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.fs-limits.min-block-size<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>1024<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> <strong><em>Note: </em></strong> Too small blocksize can degrade performance.</p>
 </li>
-<li>NAT(Net Address Tranform)<ul>
-<li>virtual machine can access other machines.  </li>
-<li>Other machines can not access virtual machine.</li>
-</ul>
+<li><p>Check</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; hdfs getconf -confKey dfs.blocksize  // show blocksize.</div></pre></td></tr></table></figure>
 </li>
-<li>Host-only<ul>
-<li>Like NAT but can not connect to Internet.</li>
-</ul>
+<li><p>Restart hadoop and put file</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; stop-dfs.sh</div><div class="line">$&gt; start-dfs.sh</div><div class="line">$&gt; hdfs dfs -put a.txt</div></pre></td></tr></table></figure>
 </li>
-</ul>
-</li>
-<li><p>Static IP Address</p>
-<ul>
-<li><p>Edit file: <code>/etc/sysconfig/network-scripts/ifcfg-enoxxxxx</code><br>  These values should be modified:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ONBOOT=yes</div><div class="line">NM_CONTROLLED=no</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=xxx.xxx.xxx.xxx</div><div class="line">NETMASK=xxx.xxx.xxx.xxx</div><div class="line">GATEWAY=xxx.xxx.xxx.xxx</div></pre></td></tr></table></figure>
-<p>  <code>NETMASK</code> and <code>GATEWAY</code> must be same with your VMnet8(NAT mode).</p>
-</li>
-<li><p>Edit file: <code>/etc/resolv.conf</code> for DNS</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nameserver xxx.xxx.xxx.xxx</div></pre></td></tr></table></figure>
-<p>  <code>nameserver</code> must be same with VMnet8 gateway.</p>
-</li>
-</ul>
-</li>
-<li><p>Jobs</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$&gt; cat a.txt &amp;  // run <span class="keyword">in</span> background</div><div class="line">$&gt; <span class="built_in">jobs</span>         // check <span class="built_in">jobs</span> <span class="keyword">in</span> background</div><div class="line">$&gt; <span class="built_in">fg</span> %n        // switch job to foreground, `n` is job ID</div><div class="line">ctrl + z        // switch job to background</div><div class="line">$&gt; <span class="built_in">bg</span> %n        // <span class="built_in">continue</span> a job <span class="keyword">in</span> background</div><div class="line">$&gt; <span class="built_in">kill</span> %n      // <span class="built_in">kill</span> a job</div></pre></td></tr></table></figure>
-</li>
-<li><p>Process</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; ps -Af      // show all processes</div><div class="line">$&gt; top</div></pre></td></tr></table></figure>
-</li>
-<li><p>Cut</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; cut -c 1-5 a.txt   // show the 1st - 5th chars <span class="keyword">in</span> each lines</div></pre></td></tr></table></figure>
-</li>
-<li><p>Device Info</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; fdisk -l /dev/sda  // show infos of `sda` like partitions</div><div class="line">$&gt; df -ah             // show free space of devices</div></pre></td></tr></table></figure>
-</li>
-<li><p>Host name</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; hostname // show host name</div></pre></td></tr></table></figure>
-<p> change host name to edit <code>/etc/hostname</code> file.</p>
-</li>
-<li><p>Host name to IP address<br> Edit file <code>/etc/hosts</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 localhost</div><div class="line">xxx.xxx.xxx.xxx host1</div></pre></td></tr></table></figure>
-</li>
-<li><p>Nested Commands</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; <span class="built_in">echo</span> www.baidu.com &gt; a.txt</div><div class="line">$&gt; <span class="built_in">echo</span> `cat a.txt`</div><div class="line">$&gt; ping $(<span class="built_in">echo</span> $(cat a.txt))</div></pre></td></tr></table></figure>
-</li>
-<li><p>Add and Delete users</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; useradd -m newuser      // add new user</div><div class="line">$&gt; userdel -rf newuser     // delete new user</div></pre></td></tr></table></figure>
-</li>
-<li><p>Env variable</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; <span class="built_in">echo</span> <span class="variable">$&#123;PATH&#125;</span></div><div class="line">$&gt; <span class="built_in">echo</span> <span class="string">"<span class="variable">$PATH</span>"</span></div><div class="line">$&gt; <span class="built_in">export</span> mypath=<span class="variable">$&#123;name:-$PATH&#125;</span>  // ternary operator</div></pre></td></tr></table></figure>
-</li>
-<li><p>Parameters of scripts</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$?        // <span class="built_in">return</span> value</div><div class="line"><span class="variable">$#</span>        // number of params</div><div class="line"><span class="variable">$n</span>        // the n-th param</div><div class="line"><span class="variable">$0</span>        // current name of script</div><div class="line"><span class="variable">$@</span>        // get all params</div><div class="line"><span class="built_in">shift</span>     // left move param</div></pre></td></tr></table></figure>
-</li>
-<li><p>If<br>An example of <code>if</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 2 ]; <span class="keyword">then</span></div><div class="line">  <span class="built_in">echo</span> less than 2!</div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$#</span> -gt 2 ]; <span class="keyword">then</span></div><div class="line">  <span class="built_in">echo</span> greater <span class="keyword">then</span> 2!</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">echo</span> good!</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">echo</span> ==============</div><div class="line"><span class="built_in">echo</span> param number is: <span class="variable">$#</span></div><div class="line"><span class="built_in">echo</span> all params are: <span class="variable">$@</span></div><div class="line"><span class="built_in">echo</span> the 2nd param is: <span class="variable">$2</span></div><div class="line"><span class="built_in">echo</span> current script name is: <span class="variable">$0</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>For<br>An example of <code>for</code>“</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">lines=5</div><div class="line"><span class="keyword">for</span> (( x=1; x&lt;=lines; x=<span class="variable">$x</span>+1 )); <span class="keyword">do</span></div><div class="line">  <span class="keyword">for</span> (( y=1; y&lt;=<span class="variable">$x</span>; y=<span class="variable">$y</span>+1 )); <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> -n <span class="variable">$ye</span></div><div class="line">  <span class="keyword">done</span></div><div class="line">  <span class="built_in">echo</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>YUM</p>
-<ul>
-<li><p>Repository</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</div><div class="line">$&gt; curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</div><div class="line">$&gt; yum makecache</div></pre></td></tr></table></figure>
-</li>
-<li><p>Yum Commands</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$&gt; yum list                  // list all packages</div><div class="line">$&gt; yum list installed        // list all installed packages</div><div class="line">$&gt; yum search xxx            // search xxx <span class="keyword">in</span> repos</div><div class="line">$&gt; yum remove xxx            // remove an installed package xxx</div><div class="line">$&gt; yum install xxx           // install a package</div><div class="line">$&gt; yum [re]install --downloadonly --downloaddir=/home/xxx wget // download wget packages into /home/xxx</div><div class="line">$&gt; yum localinstall xxx.rpm  // <span class="built_in">local</span> install a rpm</div></pre></td></tr></table></figure>
-</li>
-<li><p>Make ISO file</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; yum install mkisofs</div><div class="line">$&gt; mkisofs -r -o xxx.iso yyy    // make xxx.iso from dir yyy</div></pre></td></tr></table></figure></li>
-</ul>
-</li>
+<li><p>Put file by Hadoop API</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putFileWithBlocksize</span><span class="params">()</span> </span>&#123;</div><div class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">    conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020/"</span>);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileSystem fs = FileSystem.get(conf);</div><div class="line">        FSDataOutputStream fsdo = fs.create(<span class="keyword">new</span> Path(<span class="string">"/usr/win7admin/blocksize.txt"</span>),</div><div class="line">                <span class="keyword">true</span>, <span class="number">1024</span>, (<span class="keyword">short</span>)<span class="number">2</span>, <span class="number">1024</span>); <span class="comment">// replication: 2; block size: 1024.</span></div><div class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/HexoSourceCode/source/_posts/new1.md"</span>);</div><div class="line">        IOUtils.copyBytes(fis, fsdo, <span class="number">1024</span>);</div><div class="line">        fis.close();</div><div class="line">        fsdo.close();</div><div class="line">        System.out.println(<span class="string">"over!"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -550,7 +480,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Environment/" rel="tag"># Environment</a>
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
           
         </div>
       
@@ -563,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/22/function-wrap/" rel="next" title="function wrap">
-                <i class="fa fa-chevron-left"></i> function wrap
+              <a href="/2017/10/19/hadoop-7/" rel="next" title="hadoop-7">
+                <i class="fa fa-chevron-left"></i> hadoop-7
               </a>
             
           </div>
@@ -572,10 +502,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/08/hadoop-1/" rel="prev" title="hadoop-1">
-                hadoop-1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -758,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-CentOS"><span class="nav-number">1.</span> <span class="nav-text">Install CentOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-Commands"><span class="nav-number">2.</span> <span class="nav-text">Good Commands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Net-Configuration"><span class="nav-number">3.</span> <span class="nav-text">Net Configuration</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-size"><span class="nav-number">1.</span> <span class="nav-text">Block size</span></a></li></ol></div>
             
 
           </div>
@@ -933,9 +859,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nannanmath.github.io/2017/10/03/vmware-centos/';
-          this.page.identifier = '2017/10/03/vmware-centos/';
-          this.page.title = 'How to install CentOS Linux on VMware 12';
+          this.page.url = 'https://nannanmath.github.io/2017/10/26/hadoop-8/';
+          this.page.identifier = '2017/10/26/hadoop-8/';
+          this.page.title = 'hadoop-8';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-nannanmath-github-io.disqus.com/embed.js';

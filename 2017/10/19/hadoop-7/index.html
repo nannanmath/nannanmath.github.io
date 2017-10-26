@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Nan">
 <meta property="og:description" content="Maven introduction.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-19T09:55:47.976Z">
+<meta property="og:updated_time" content="2017-10-26T07:10:17.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop-7">
 <meta name="twitter:description" content="Maven introduction.">
@@ -454,9 +454,11 @@
 <li>Unzip and config <strong><em>path</em></strong>.</li>
 </ol>
 <h2 id="Maven-configuration"><a href="#Maven-configuration" class="headerlink" title="Maven configuration"></a>Maven configuration</h2><ol>
-<li>Change repository<ul>
+<li><p>Change repository<br> Edit <strong><em>${M2_HOME}/conf/settings.xml</em></strong></p>
+<ul>
 <li>remote repo<br>  &lt;mirror&gt;<br>  &lt;profile&gt;</li>
-<li>Local repo<br>  &lt;localRepository&gt;</li>
+<li>Local repo<br>  Default repo is <strong><em>${USER_HOME}/.m2/repository</em></strong>.  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>/path/to/local/repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>Project control</p>
@@ -473,6 +475,42 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; mvn clean compile    // compile</div><div class="line">$&gt; mvn clean package    // package jar</div><div class="line">$&gt; java -cp testmaven-1.0.0.jar nan.learnjava.testmaven.HelloMaven  // run</div></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+</ol>
+<h2 id="Private-Maven-Server"><a href="#Private-Maven-Server" class="headerlink" title="Private Maven Server"></a>Private Maven Server</h2><ol>
+<li><p>NEXUS</p>
+<ul>
+<li>Download <strong><em>nexus-xxx-bundel.zip</em></strong> from <a href="https://www.sonatype.com/download-oss-sonatype" target="_blank" rel="external">NEXUS</a>.  </li>
+<li>Unzip and set path env.  </li>
+<li><p>Install service</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; nexus install  // install nexus service</div><div class="line">$&gt; nexus start    // start service</div><div class="line">$&gt; nexus restart  // restart service</div></pre></td></tr></table></figure>
+</li>
+<li><p>Open in browser<br>  Web site: <strong><em><a href="http://localhost:8081/nexus" target="_blank" rel="external">http://localhost:8081/nexus</a></em></strong></p>
+</li>
+</ul>
+</li>
+<li><p>Config of nexus</p>
+<ul>
+<li><p>Nexus repository path<br>  Edit file <strong><em>${NEXUS_HOME}/conf/nexus.properties</em></strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">applicaton-port=8081  #default port</div><div class="line">nexus-work=$&#123;bundleBasedir&#125;/../sonatype-work/nexus  #default repository path</div></pre></td></tr></table></figure>
+</li>
+<li><p>Log in<br>  username: admin<br>  password: admin123  </p>
+</li>
+<li>Update index<br>  <strong><em>Repositories –&gt; Central –&gt; Configuration –&gt; Download Remote Indexes –&gt; true</em></strong><br>  <strong><em>Central –&gt; Repair Index</em></strong></li>
+</ul>
+</li>
+<li>Config of Maven<ul>
+<li>Copy<br>  <strong><em>${M2_HOME}/conf/settings.xml</em></strong> to <strong><em>${HOME}/.m2/</em></strong></li>
+<li>Edit <strong><em>settings.xml</em></strong>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--localRepository--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:/MyApps/mvn-local-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--mirror--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>nexus repo for maven.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--profile--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>central repos from nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">profiels</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--active--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Archetype"><a href="#Archetype" class="headerlink" title="Archetype"></a>Archetype</h2><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; mvn archetype:generate -DarchetypeCatalog=internal</div></pre></td></tr></table></figure>
+</code></pre><h2 id="Maven-for-Eclipse"><a href="#Maven-for-Eclipse" class="headerlink" title="Maven for Eclipse"></a>Maven for Eclipse</h2><ol>
+<li>Config<br> <strong><em>Preference</em></strong> –&gt; <strong><em>Maven</em></strong> –&gt; <strong><em>User Setting</em></strong> –&gt; <strong><em>Global Settings</em></strong> –&gt; <strong><em>User Settings</em></strong></li>
+<li>New Project<br> <strong><em>New</em></strong> –&gt; <strong><em>Project…</em></strong> –&gt; <strong><em>Maven</em></strong> –&gt; <strong><em>Maven Project</em></strong> –&gt; <strong><em>Location</em></strong> –&gt; <strong><em>Next</em></strong> –&gt; <strong><em>…</em></strong> ..<br> Input <strong><em>Group Id</em></strong>, <strong><em>Artifact Id</em></strong>, <strong><em>Version</em></strong>, <strong><em>Package</em></strong></li>
+<li>Add dependencies<br> Edit <strong><em>pom.xml</em></strong> file, add dependency. <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -514,6 +552,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/26/hadoop-8/" rel="prev" title="hadoop-8">
+                hadoop-8 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -597,7 +639,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -696,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-configuration"><span class="nav-number">2.</span> <span class="nav-text">Maven configuration</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-configuration"><span class="nav-number">2.</span> <span class="nav-text">Maven configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Private-Maven-Server"><span class="nav-number">3.</span> <span class="nav-text">Private Maven Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Archetype"><span class="nav-number">4.</span> <span class="nav-text">Archetype</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-for-Eclipse"><span class="nav-number">5.</span> <span class="nav-text">Maven for Eclipse</span></a></li></ol></div>
             
 
           </div>
