@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hadoop," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -96,18 +96,20 @@
 
 
 
-<meta name="description" content="Hadoop start procedure.">
-<meta name="keywords" content="hadoop">
+<meta name="description" content="NIO.">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop-4">
-<meta property="og:url" content="https://nannanmath.github.io/2017/10/13/hadoop-4/index.html">
+<meta property="og:title" content="java-nio">
+<meta property="og:url" content="https://nannanmath.github.io/2017/10/24/java-nio/index.html">
 <meta property="og:site_name" content="Nan">
-<meta property="og:description" content="Hadoop start procedure.">
+<meta property="og:description" content="NIO.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-13T10:20:46.027Z">
+<meta property="og:image" content="https://nannanmath.github.io/2017/10/24/java-nio/SocketChannel.png">
+<meta property="og:updated_time" content="2017-10-31T02:14:27.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hadoop-4">
-<meta name="twitter:description" content="Hadoop start procedure.">
+<meta name="twitter:title" content="java-nio">
+<meta name="twitter:description" content="NIO.">
+<meta name="twitter:image" content="https://nannanmath.github.io/2017/10/24/java-nio/SocketChannel.png">
 
 
 
@@ -137,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://nannanmath.github.io/2017/10/13/hadoop-4/"/>
+  <link rel="canonical" href="https://nannanmath.github.io/2017/10/24/java-nio/"/>
 
 
 
 
 
-  <title>hadoop-4 | Nan</title>
+  <title>java-nio | Nan</title>
   
 
 
@@ -343,7 +345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/13/hadoop-4/">
+    <link itemprop="mainEntityOfPage" href="https://nannanmath.github.io/2017/10/24/java-nio/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nannanmath">
@@ -360,7 +362,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">hadoop-4</h2>
+          <h2 class="post-title" itemprop="name headline">java-nio</h2>
         
 
         <div class="post-meta">
@@ -372,8 +374,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-13T17:27:35+08:00">
-                2017-10-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T22:28:54+08:00">
+                2017-10-24
               </time>
             
 
@@ -395,8 +397,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/BigData/" itemprop="url" rel="index">
-                    <span itemprop="name">BigData</span>
+                  <a href="/categories/Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Program</span>
                   </a>
                 </span>
 
@@ -413,9 +415,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/13/hadoop-4/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/24/java-nio/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/13/hadoop-4/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/24/java-nio/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,18 +450,31 @@
       
 
       
-        <p>Hadoop start procedure.<br><a id="more"></a></p>
-<h2 id="Processes"><a href="#Processes" class="headerlink" title="Processes"></a>Processes</h2><ol>
-<li><code>start-dfs.sh</code><br> NameNode<br> SecondNameNode<br> DataNode</li>
-<li><code>start-yarn.sh</code><br> ResourceManager<br> NodeManage</li>
-</ol>
-<h2 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h2><ol>
-<li><code>sbin/start-all.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>start-dfs.sh</code><br> <code>start-yarn.sh</code></li>
-<li><code>sbin/start-dfs.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start namenode ...</code><br> <code>sbin/hadoop-daemons.sh --config ... --hostname ... start datanode ...</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start secondarynamenode ...</code><br> <code>sbin/hadoop-daemon.sh --config ... --hostname ... start zkfc ...</code></li>
-<li><code>sbin/start-yarn.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>sbin/yarn-daemon.sh start resourcemanager</code><br> <code>sbin/yarn-daemon.sh start nodemanager</code></li>
-<li><code>sbin/hadoop-deamons.sh</code><br> <code>libexec/hadoop-config.sh</code><br> get slave node from <code>slaves</code> file<br> <code>hadoop-daemon.sh</code></li>
-<li><code>sbin/hadoop-deamon.sh</code><br> <code>libexec/hadoop-config.sh</code><br> <code>bin/hdfs ...</code></li>
-<li>Start process separately <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$&gt; hadoop-daemon.sh start namenode  // start namenode (run on master node)</div><div class="line">$&gt; hadoop-daemons.sh start datanode // start datanodes on 3 machines (run on master node, `hadoop-daemons.sh` will access slaves file)</div><div class="line">$&gt; hadoop-daemon.sh stop namenode   // stop namenode (run on master node)</div><div class="line">$&gt; hadoop-daemon.sh stop datanode   // stop datanode on that node who runs this <span class="built_in">command</span>.</div></pre></td></tr></table></figure>
+        <p>NIO.<br><a id="more"></a></p>
+<h2 id="Java-non-blocking-IO-NIO"><a href="#Java-non-blocking-IO-NIO" class="headerlink" title="Java non-blocking IO (NIO)"></a>Java non-blocking IO (NIO)</h2><ul>
+<li>Support form JDK 1.4</li>
+<li>java.nio.buffer<br>  capacity<br>  limit<br>  position<br>  mark</li>
+<li><p>Allocate buffer</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ByteBuffer buf = ByteBuffer.allocate(<span class="number">20</span>);       <span class="comment">// allocate in heap.</span></div><div class="line">ByteBuffer buf = ByteBuffer.allocateDirect(<span class="number">20</span>;) <span class="comment">// allocate in off-heap.</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>ByteBuffer common operations</p>
+<ul>
+<li><code>rewind()</code> : pos=0, mark discard</li>
+<li><code>clear()</code>  : pos=0, lim=cap, mark discard</li>
+<li><code>flip()</code>   : lim=pos, pos=0, mark discard</li>
+<li><code>reset()</code>  : pos=mark</li>
+<li><code>slice()</code>  : split a buffer at remaining position</li>
+</ul>
+</li>
+</ul>
+<h2 id="Garbage-Collection-GC"><a href="#Garbage-Collection-GC" class="headerlink" title="Garbage Collection (GC)"></a>Garbage Collection (GC)</h2><p><code>System.gc()</code></p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><ol>
+<li><p>FileChannel<br> Copy file by Channel.</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"TestChannelSrc.txt"</span>);</div><div class="line">        FileChannel fcin = fis.getChannel();</div><div class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"TestChannelDst.txt"</span>);</div><div class="line">        FileChannel fcout = fos.getChannel();</div><div class="line">        ByteBuffer buf = ByteBuffer.allocate(<span class="number">1024</span> * <span class="number">50</span>);</div><div class="line">        <span class="keyword">while</span>(fcin.read(buf) != -<span class="number">1</span>) &#123;</div><div class="line">            buf.flip();</div><div class="line">            fcout.write(buf);</div><div class="line">            buf.clear();</div><div class="line">        &#125;</div><div class="line">        fis.close();</div><div class="line">        fos.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>SocketChannel<br> <img src="/2017/10/24/java-nio/SocketChannel.png" alt="SocketChannelImage"><br> Full code can be found on <a href="https://github.com/nannanmath/JavaReflection/tree/master/src/nan/learnjava/nio/socketchannel" target="_blank" rel="external">github</a>.</p>
+</li>
+<li><p>MappedByteBuffer<br> Map File on device to memory synchronizely.<br> Full code can be found on <a href="https://github.com/nannanmath/JavaReflection/blob/master/src/nan/learnjava/nio/mappedbytebuffer/TestMappedByteBuffer.java" target="_blank" rel="external">github</a>.</p>
 </li>
 </ol>
 
@@ -479,7 +494,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -492,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/13/java-reflection/" rel="next" title="java-reflection">
-                <i class="fa fa-chevron-left"></i> java-reflection
+              <a href="/2017/10/19/hadoop-7/" rel="next" title="hadoop-7">
+                <i class="fa fa-chevron-left"></i> hadoop-7
               </a>
             
           </div>
@@ -502,8 +517,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/16/hadoop-5/" rel="prev" title="hadoop-5">
-                hadoop-5 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/26/hadoop-8/" rel="prev" title="hadoop-8">
+                hadoop-8 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -687,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Processes"><span class="nav-number">1.</span> <span class="nav-text">Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scripts"><span class="nav-number">2.</span> <span class="nav-text">Scripts</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-non-blocking-IO-NIO"><span class="nav-number">1.</span> <span class="nav-text">Java non-blocking IO (NIO)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Garbage-Collection-GC"><span class="nav-number">2.</span> <span class="nav-text">Garbage Collection (GC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Channel"><span class="nav-number">3.</span> <span class="nav-text">Channel</span></a></li></ol></div>
             
 
           </div>
@@ -862,9 +877,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nannanmath.github.io/2017/10/13/hadoop-4/';
-          this.page.identifier = '2017/10/13/hadoop-4/';
-          this.page.title = 'hadoop-4';
+          this.page.url = 'https://nannanmath.github.io/2017/10/24/java-nio/';
+          this.page.identifier = '2017/10/24/java-nio/';
+          this.page.title = 'java-nio';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-nannanmath-github-io.disqus.com/embed.js';

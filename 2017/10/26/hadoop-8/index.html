@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="Hdfs block size.">
+<meta name="description" content="Hdfs writting process.">
 <meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop-8">
 <meta property="og:url" content="https://nannanmath.github.io/2017/10/26/hadoop-8/index.html">
 <meta property="og:site_name" content="Nan">
-<meta property="og:description" content="Hdfs block size.">
+<meta property="og:description" content="Hdfs writting process.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-26T07:18:50.676Z">
+<meta property="og:updated_time" content="2017-10-30T04:13:16.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop-8">
-<meta name="twitter:description" content="Hdfs block size.">
+<meta name="twitter:description" content="Hdfs writting process.">
 
 
 
@@ -448,8 +448,8 @@
       
 
       
-        <p>Hdfs block size.<br><a id="more"></a></p>
-<h2 id="Block-size"><a href="#Block-size" class="headerlink" title="Block size"></a>Block size</h2><ol>
+        <p>Hdfs writting process.<br><a id="more"></a></p>
+<h2 id="Set-block-size"><a href="#Set-block-size" class="headerlink" title="Set block size"></a>Set block size</h2><ol>
 <li><p>Add property<br> Default blocksize is 128m, minimal blocksize is 1m.<br> Edit <strong><em>hdfs-site.xml</em></strong>, add property <code>dfs.blocksize</code>.</p>
  <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dsf.blocksize<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>2k<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.fs-limits.min-block-size<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>1024<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
 <p> <strong><em>Note: </em></strong> Too small blocksize can degrade performance.</p>
@@ -461,7 +461,15 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; stop-dfs.sh</div><div class="line">$&gt; start-dfs.sh</div><div class="line">$&gt; hdfs dfs -put a.txt</div></pre></td></tr></table></figure>
 </li>
 <li><p>Put file by Hadoop API</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putFileWithBlocksize</span><span class="params">()</span> </span>&#123;</div><div class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">    conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020/"</span>);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileSystem fs = FileSystem.get(conf);</div><div class="line">        FSDataOutputStream fsdo = fs.create(<span class="keyword">new</span> Path(<span class="string">"/usr/win7admin/blocksize.txt"</span>),</div><div class="line">                <span class="keyword">true</span>, <span class="number">1024</span>, (<span class="keyword">short</span>)<span class="number">2</span>, <span class="number">1024</span>); <span class="comment">// replication: 2; block size: 1024.</span></div><div class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/HexoSourceCode/source/_posts/new1.md"</span>);</div><div class="line">        IOUtils.copyBytes(fis, fsdo, <span class="number">1024</span>);</div><div class="line">        fis.close();</div><div class="line">        fsdo.close();</div><div class="line">        System.out.println(<span class="string">"over!"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putFileWithBlocksize</span><span class="params">()</span> </span>&#123;</div><div class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</div><div class="line">    conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://192.168.137.201:8020/"</span>);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileSystem fs = FileSystem.get(conf);</div><div class="line">        FSDataOutputStream fsdo = fs.create(<span class="keyword">new</span> Path(<span class="string">"/usr/win7admin/blocksize.txt"</span>),</div><div class="line">                <span class="keyword">true</span>, <span class="number">1024</span>, (<span class="keyword">short</span>)<span class="number">2</span>, <span class="number">1024</span>); <span class="comment">// replication: 2; block size: 1024.</span></div><div class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/HexoSourceCode/source/_posts/new1.md"</span>);</div><div class="line">        IOUtils.copyBytes(fis, fsdo, <span class="number">1024</span>);</div><div class="line">        fis.close();</div><div class="line">        fsdo.close();</div><div class="line">        System.out.println(<span class="string">"over!"</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Writting-process"><a href="#Writting-process" class="headerlink" title="Writting process"></a>Writting process</h2><ol>
+<li>Concept<ul>
+<li>Packet<br>  64k</li>
+<li>chunk<br>  Checksum each chunk<br>  512 bytes</li>
+</ul>
+</li>
 </ol>
 
       
@@ -493,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/19/hadoop-7/" rel="next" title="hadoop-7">
-                <i class="fa fa-chevron-left"></i> hadoop-7
+              <a href="/2017/10/24/java-nio/" rel="next" title="java-nio">
+                <i class="fa fa-chevron-left"></i> java-nio
               </a>
             
           </div>
@@ -585,7 +593,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -684,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-size"><span class="nav-number">1.</span> <span class="nav-text">Block size</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-block-size"><span class="nav-number">1.</span> <span class="nav-text">Set block size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writting-process"><span class="nav-number">2.</span> <span class="nav-text">Writting process</span></a></li></ol></div>
             
 
           </div>
